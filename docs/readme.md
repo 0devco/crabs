@@ -9,11 +9,11 @@ yarn add @0devco/crabs
 
 ```js
 // globally
-window.collect = require('@0devco/crabs')
+window.crabs= require('@0devco/crabs')
 //or locally
-import collect from '@0devco/crabs'
+import crabsfrom '@0devco/crabs'
 // optional for 0devco
-global.collect = require('@0devco/crabs')
+global.crabs= require('@0devco/crabs')
 ```
 ### 0devco methods
 - [0devco methods](#0devco)
