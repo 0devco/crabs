@@ -1,6 +1,6 @@
 'use strict';
 
-var values = require('../helpers/values');
+var values = require('../../helpers/values');
 
 module.exports = function whereNotBetween(key, array) {
     var items = values(this.items);

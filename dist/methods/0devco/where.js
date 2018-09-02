@@ -22,14 +22,14 @@ module.exports = function where(key, operator, value) {
       case '===':
         return item[key] === comparisonValue;
 
-      case 'like' :
-          return item[key].replace(/\s/g, '').toUpperCase().includes(comparisonValue.replace(/\s/g, '').toUpperCase());
-      case 'like%' :
-          return item[key].replace(/\s/g, '').toUpperCase().startsWith(comparisonValue.replace(/\s/g, '').toUpperCase());
-      case '%like' :
-          return item[key].replace(/\s/g, '').toUpperCase().endsWith(comparisonValue.replace(/\s/g, '').toUpperCase());
-      case '==*' :
-          return item[key].replace(/\s/g, '').toString().toUpperCase() === comparisonValue.replace(/\s/g, '').toString().toUpperCase();
+      case 'like':
+        return item[key].replace(/\s/g, '').toUpperCase().includes(comparisonValue.replace(/\s/g, '').toUpperCase());
+      case 'like%':
+        return item[key].replace(/\s/g, '').toUpperCase().startsWith(comparisonValue.replace(/\s/g, '').toUpperCase());
+      case '%like':
+        return item[key].replace(/\s/g, '').toUpperCase().endsWith(comparisonValue.replace(/\s/g, '').toUpperCase());
+      case '==*':
+        return item[key].replace(/\s/g, '').toString().toUpperCase() === comparisonValue.replace(/\s/g, '').toString().toUpperCase();
 
       case '!=':
       case '<>':
@@ -52,5 +52,5 @@ module.exports = function where(key, operator, value) {
 
     }
   });
- return new this.constructor(collection);
+  return new this.constructor(collection);
 };
