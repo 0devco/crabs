@@ -112,8 +112,6 @@ All available methods
 - [wrap](#wrap)
 - [zip](#zip)
 
-### Strictness and comparisons
-All comparisons in ``collect.js`` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in ``collect.js`` because all methods are strict by default.
 
 #####  Methods that have not been implemented:
 - ~~``containsStrict``~~ use ``contains()``
@@ -1386,7 +1384,7 @@ collection.all();
 
 You may also pass a second argument to set the key of the prepended item:
 
-> Pro tip: Order of properties in objects is not guaranteed in JavaScript; When calling prepend with a key, the Collection uses the underlying ``put`` method behind the scenes. This is only supported so that collect.js have the same api as Laravel Collections.
+> Pro tip: Order of properties in objects is not guaranteed in JavaScript; When calling prepend with a key, the Collection uses the underlying ``put`` method behind the scenes. This is only supported so that crabs have the same api as Laravel Collections.
 
 ```js
 const collection = crabs({
