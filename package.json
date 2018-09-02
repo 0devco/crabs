@@ -1,6 +1,6 @@
 {
   "name": "@0devco/crabs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "0devco javascript data collections",
   "main": "dist/index.js",
   "typings": "index.d.ts",
