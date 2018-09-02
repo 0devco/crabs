@@ -106,6 +106,28 @@ module.exports = function values(items) {
 
 
 /**
+ * Variadic helper function
+ *
+ * @param args
+ * @returns {*}
+ */
+
+module.exports = function variadic(args) {
+  if (Array.isArray(args[0])) {
+    return args[0];
+  }
+
+  return args;
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
  * Get value of a nested property
  *
  * @param mainObject
@@ -121,28 +143,6 @@ module.exports = function nestedValue(mainObject, key) {
   } catch (err) {
     return null;
   }
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Variadic helper function
- *
- * @param args
- * @returns {*}
- */
-
-module.exports = function variadic(args) {
-  if (Array.isArray(args[0])) {
-    return args[0];
-  }
-
-  return args;
 };
 
 /***/ }),
@@ -264,18 +264,18 @@ Collection.prototype.unique = __webpack_require__(89);
 Collection.prototype.unwrap = __webpack_require__(90);
 Collection.prototype.values = __webpack_require__(91);
 Collection.prototype.when = __webpack_require__(92);
-Collection.prototype.where = __webpack_require__(93);
-Collection.prototype.whereIn = __webpack_require__(94);
-Collection.prototype.whereNotIn = __webpack_require__(95);
-Collection.prototype.wrap = __webpack_require__(96);
-Collection.prototype.zip = __webpack_require__(97);
+Collection.prototype.where = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./methods/where\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+Collection.prototype.whereIn = __webpack_require__(93);
+Collection.prototype.whereNotIn = __webpack_require__(94);
+Collection.prototype.wrap = __webpack_require__(95);
+Collection.prototype.zip = __webpack_require__(96);
 /* 0devco 5 custom module */
-Collection.prototype.where = __webpack_require__(98);
-Collection.prototype.orWhere = __webpack_require__(99);
-Collection.prototype.paginate = __webpack_require__(100);
-Collection.prototype.pagelists = __webpack_require__(101);
-Collection.prototype.whereBetween = __webpack_require__(102);
-Collection.prototype.whereNotBetween = __webpack_require__(103);
+Collection.prototype.where = __webpack_require__(97);
+Collection.prototype.orWhere = __webpack_require__(98);
+Collection.prototype.paginate = __webpack_require__(99);
+Collection.prototype.pagelists = __webpack_require__(100);
+Collection.prototype.whereBetween = __webpack_require__(101);
+Collection.prototype.whereNotBetween = __webpack_require__(102);
 
 var crabs = function collect(collection) {
   return new Collection(collection);
@@ -909,7 +909,7 @@ module.exports = function every(fn) {
 "use strict";
 
 
-var variadic = __webpack_require__(2);
+var variadic = __webpack_require__(1);
 
 module.exports = function except() {
   var _this = this;
@@ -1278,7 +1278,7 @@ module.exports = function groupBy(key) {
 "use strict";
 
 
-var variadic = __webpack_require__(2);
+var variadic = __webpack_require__(1);
 
 module.exports = function has() {
   var _this = this;
@@ -1765,7 +1765,7 @@ module.exports = function nth(n) {
 "use strict";
 
 
-var variadic = __webpack_require__(2);
+var variadic = __webpack_require__(1);
 
 module.exports = function only() {
   var _this = this;
@@ -1933,7 +1933,7 @@ module.exports = function pipe(fn) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var nestedValue = __webpack_require__(1);
+var nestedValue = __webpack_require__(2);
 
 var buildKeyPathMap = function buildKeyPathMap(items) {
   var keyPaths = {};
@@ -2717,49 +2717,14 @@ module.exports = function when(value, fn, defaultFn) {
 "use strict";
 
 
-var values = __webpack_require__(0);
-var nestedValue = __webpack_require__(1);
+var extractValues = __webpack_require__(0);
+var nestedValue = __webpack_require__(2);
 
-module.exports = function where(key, operator, value) {
-  var comparisonOperator = operator;
-  var comparisonValue = value;
+module.exports = function whereIn(key, values) {
+  var items = extractValues(values);
 
-  if (value === undefined) {
-    comparisonValue = operator;
-    comparisonOperator = '===';
-  }
-
-  var items = values(this.items);
-
-  var collection = items.filter(function (item) {
-    switch (comparisonOperator) {
-      case '==':
-        return nestedValue(item, key) === Number(comparisonValue) || nestedValue(item, key) === comparisonValue.toString();
-
-      default:
-      case '===':
-        return nestedValue(item, key) === comparisonValue;
-
-      case '!=':
-      case '<>':
-        return nestedValue(item, key) !== Number(comparisonValue) && nestedValue(item, key) !== comparisonValue.toString();
-
-      case '!==':
-        return nestedValue(item, key) !== comparisonValue;
-
-      case '<':
-        return nestedValue(item, key) < comparisonValue;
-
-      case '<=':
-        return nestedValue(item, key) <= comparisonValue;
-
-      case '>':
-        return nestedValue(item, key) > comparisonValue;
-
-      case '>=':
-        return nestedValue(item, key) >= comparisonValue;
-
-    }
+  var collection = this.items.filter(function (item) {
+    return items.indexOf(nestedValue(item, key)) !== -1;
   });
 
   return new this.constructor(collection);
@@ -2773,27 +2738,7 @@ module.exports = function where(key, operator, value) {
 
 
 var extractValues = __webpack_require__(0);
-var nestedValue = __webpack_require__(1);
-
-module.exports = function whereIn(key, values) {
-  var items = extractValues(values);
-
-  var collection = this.items.filter(function (item) {
-    return items.indexOf(nestedValue(item, key)) !== -1;
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var extractValues = __webpack_require__(0);
-var nestedValue = __webpack_require__(1);
+var nestedValue = __webpack_require__(2);
 
 module.exports = function whereNotIn(key, values) {
   var items = extractValues(values);
@@ -2806,7 +2751,7 @@ module.exports = function whereNotIn(key, values) {
 };
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2827,7 +2772,7 @@ module.exports = function wrap(value) {
 };
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2850,7 +2795,7 @@ module.exports = function zip(array) {
 };
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2912,7 +2857,7 @@ module.exports = function where(key, operator, value) {
 };
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2984,7 +2929,7 @@ module.exports = function orWhere(array) {
 };
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3000,7 +2945,7 @@ module.exports = function paginate(key) {
 };
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3017,7 +2962,7 @@ module.exports = function pagelists(key) {
 };
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3042,7 +2987,7 @@ module.exports = function whereBetween(key, array) {
 };
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
