@@ -23,7 +23,7 @@ window.crabs = require('@0devco/crabs')
 
 # courtesy:
 
-*  [collect.js](https://github.com/0devco/crabs)
+*  [collect.js](https://github.com/ecrmnn/collect.js)
 
 
 
