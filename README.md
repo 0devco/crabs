@@ -19,7 +19,7 @@ window.crabs = require('@0devco/crabs')
 
 # documentations
 
-* [doc](https://github.com/0devco/crabs/tree/master/docs)
+* <a href="https://github.com/0devco/crabs/tree/master/docs" target="_blank" >doc</a>
 
 # courtesy:
 
