@@ -102,6 +102,13 @@ Collection.prototype.whereIn = require('./methods/whereIn');
 Collection.prototype.whereNotIn = require('./methods/whereNotIn');
 Collection.prototype.wrap = require('./methods/wrap');
 Collection.prototype.zip = require('./methods/zip');
+/* 0devco 5 custom module */
+Collection.prototype.where = require('./methods/0devco/where');
+Collection.prototype.orWhere = require('./methods/0devco/orWhere');
+Collection.prototype.paginate = require('./methods/0devco/paginate');
+Collection.prototype.pagelists = require('./methods/0devco/paginate-lists');
+Collection.prototype.whereBetween = require('./methods/0devco/whereBetween');
+Collection.prototype.whereNotBetween = require('./methods/0devco/whereNotBetween');
 
 var crabs = function collect(collection) {
   return new Collection(collection);
