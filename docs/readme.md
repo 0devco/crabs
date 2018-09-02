@@ -1,7 +1,8 @@
 ### 🦀Installation `4.0.26`
 ```bash
+# npm
 npm install @0devco/crabs --save
-or..
+# yarn
 yarn add @0devco/crabs
 ```
 
