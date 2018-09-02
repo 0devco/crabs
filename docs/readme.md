@@ -2119,6 +2119,8 @@ zipped.all();
 
 #### `0devco methods`
 
+~ `test by vue.js`
+
 * [where](#and-where)
    * [and where](#and-where)
    * [case insensative](#case-insensative-where)
