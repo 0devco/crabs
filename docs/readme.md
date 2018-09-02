@@ -15,7 +15,7 @@ import collect from '@0devco/crabs'
 // optional for 0devco
 global.collect = require('@0devco/crabs')
 ```
-0devco methods
+### 0devco methods
 - [0devco methods](#0devco)
 
 ### Usage
