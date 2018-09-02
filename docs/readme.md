@@ -1,4 +1,4 @@
-### 🦀Installation
+### 🦀Installation `4.0.26`
 ```bash
 npm install @0devco/crabs --save
 or..
